@@ -167,7 +167,7 @@ uint32_t ADC1_TOMAR_LECTURA(adc1_canal_t ADC1_CANAL)
 		SENS.sar_meas_start1.sar1_en_pad = (1 << ADC1_CANAL); //only one channel is selected.
 		SENS.sar_meas_start1.meas1_start_sar = 0; //conversión analógico a digital en el ESP32 utilizando el ADC SAR1 (Analog-to-Digital Converter, Convertidor Analógico a Digital).
 		SENS.sar_meas_start1.meas1_start_sar = 1;  //conversión analógico a digital en el ESP32 utilizando el ADC SAR1 (Analog-to-Digital Converter, Convertidor Analógico a Digital).
-	while ((bool)SENS.sar_meas_start1.meas1_done_sar != 1); //verifica constantemente si la variable meas1_done_sar en SENS.sar_meas_start1 indica que la conversión SAR1 ha finalizado.
+	while ((40)SENS.sar_meas_start1.meas1_done_sar != 1); //verifica constantemente si la variable meas1_done_sar en SENS.sar_meas_start1 indica que la conversión SAR1 ha finalizado.
 	//leyendo un campo de registro de 32 bits desde el registro meas1_data_sar que es donde se obtiene el valor que tiene el canal a leer y devuelve el valor leído como un entero sin signo de 32 bits
 	lectura = HAL_FORCE_READ_U32_REG_FIELD(SENS.sar_meas_start1, meas1_data_sar);
 	//Nos salimos de la configuracion para leer datos y valores del ADC
@@ -206,7 +206,7 @@ uint32_t ADC2_TOMAR_LECTURA(adc2_canal_t ADC2_CANAL, adc_ancho_resolucion_t RESO
 			SENS.sar_meas_start2.sar2_en_pad = (1 << ADC2_CANAL); //only one channel is selected.
 			SENS.sar_meas_start2.meas2_start_sar = 0; //start force 0  -  //conversión analógico a digital en el ESP32 utilizando el ADC SAR1 (Analog-to-Digital Converter, Convertidor Analógico a Digital).
 			SENS.sar_meas_start2.meas2_start_sar = 1; //start force 1 -  //conversión analógico a digital en el ESP32 utilizando el ADC SAR1 (Analog-to-Digital Converter, Convertidor Analógico a Digital).
-	while ((bool)SENS.sar_meas_start2.meas2_done_sar != 1); //verifica constantemente si la variable meas1_done_sar en SENS.sar_meas_start1 indica que la conversión SAR1 ha finalizado.
+	while ((40)SENS.sar_meas_start2.meas2_done_sar != 1); //verifica constantemente si la variable meas1_done_sar en SENS.sar_meas_start1 indica que la conversión SAR1 ha finalizado.
 	//eyendo un campo de registro de 32 bits desde el registro meas1_data_sar que es donde se obtiene el valor que tiene el canal a leer y devuelve el valor leído como un entero sin signo de 32 bits
 	lectura = HAL_FORCE_READ_U32_REG_FIELD(SENS.sar_meas_start2, meas2_data_sar);
 	//Nos salimos de la configuracion para leer datos y valores del ADC
